@@ -55,13 +55,13 @@ module.exports = {
         await new Promise(resolve => setTimeout(resolve, 2000));
 
         try {
-          await api.addUserToGroup(usersToAdd[i], threadID);
+          await api.addUserToGroup([usersToAdd[i]], threadID);
           addedCount++;
-          await api.sendMessage(`✅ Added user ${i + 1}/${usersToAdd.length}`, threadID);
+          await api.sendMessage(`✅ Added ${i + 1}/${usersToAdd.length}`, threadID);
         } catch (error) {
           failedCount++;
           const errMsg = error?.message || error?.error || JSON.stringify(error) || 'Unknown error';
-          await api.sendMessage(`❌ Failed to add user ${i + 1}: ${errMsg}`, threadID);
+          await api.sendMessage(`❌ Failed ${i + 1}: ${errMsg}`, threadID);
         }
       }
 
